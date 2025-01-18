@@ -43,7 +43,7 @@ function App() {
 
       <div className="flex flex-col gap-3 justify-center items-center">
         <Button loading={loading} onClick={async () => sendRequest()}>
-          Save File
+          {error ? "Try again" : "Save File"}
         </Button>
         {message && (
           <div className="w-full max-w-96 bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4">

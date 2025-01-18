@@ -4,7 +4,7 @@ import { LoaderCircle } from 'lucide-react';
 
 const buttonClassNames = cn(
   'inline-flex flex-row items-center justify-center gap-1.5 whitespace-nowrap',
-  'px-2 py-1 rounded-md bg-white hover:bg-white/90 transition-colors',
+  'px-3 py-1.5 rounded-md bg-white hover:bg-white/90 transition-colors',
   'text-base font-medium',
   'ring-offset-bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bg-gray-800 focus-visible:ring-offset-2 ',
   'disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0'

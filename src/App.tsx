@@ -1,37 +1,28 @@
-import { faker } from '@faker-js/faker';
-import { useState } from 'react';
-import { Button } from '@/ui/button';
-import { Check, TriangleAlert } from 'lucide-react';
-
-const saveFile = (): Promise<string> =>
-  new Promise((res, rej) => {
-    const timeToResolve = faker.number.int({ min: 1000, max: 3000 });
-
-    setTimeout(() => {
-      Math.random() > 0.5
-        ? res(`Success: ${faker.system.commonFileName()} saved`)
-        : rej(`Error: ${faker.system.commonFileName()} not saved`);
-    }, timeToResolve);
-  });
+import { useState } from "react";
+import { Button } from "@/ui/button";
+import { Check, LoaderCircle, TriangleAlert } from "lucide-react";
+import { saveFile } from "@/lib/server";
 
 function App() {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [activeRequests, setActiveRequests] = useState(0);
+  const loading = activeRequests > 0;
 
   const sendRequest = async () => {
+    setActiveRequests((prev) => prev + 1);
     setMessage(null);
     setError(null);
-    setLoading(true);
+
     try {
       const result = await saveFile();
       console.log(result);
       setMessage(result);
     } catch (err: unknown) {
       console.error(err);
-      if (typeof err === 'string') setError(err);
+      if (typeof err === "string") setError(err);
     } finally {
-      setLoading(false);
+      setActiveRequests((prev) => prev - 1);
     }
   };
 
@@ -42,9 +33,14 @@ function App() {
       </h1>
 
       <div className="flex flex-col gap-3 justify-center items-center">
-        <Button loading={loading} onClick={async () => sendRequest()}>
+        <Button
+          disabled={activeRequests >= 3}
+          onClick={async () => sendRequest()}
+        >
           {error ? "Try again" : "Save File"}
         </Button>
+        <span className="text-white">Active requests: {activeRequests}</span>
+        {loading && <LoaderCircle className="animate-spin text-white" />}
         {message && (
           <div className="w-full max-w-96 bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4">
             <span className="animate-appear flex items-center gap-1 mb-2 text-green-600 text-xl font-semibold">

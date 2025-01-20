@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { cn } from '@/lib/cn';
-import { LoaderCircle } from 'lucide-react';
+import * as React from "react";
+import { cn } from "@/lib/cn";
+import { LoaderCircle } from "lucide-react";
 
 const buttonClassNames = cn(
-  'inline-flex flex-row items-center justify-center gap-1.5 whitespace-nowrap',
-  'px-3 py-1.5 rounded-md bg-white hover:bg-white/90 transition-colors',
-  'text-base font-medium',
-  'ring-offset-grey-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-grey-800 focus-visible:ring-offset-2',
-  'disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0'
+  "inline-flex flex-row items-center justify-center gap-1.5 whitespace-nowrap",
+  "px-4 py-2 rounded-md bg-white hover:bg-white/90 transition-colors",
+  "text-base font-medium",
+  "ring-offset-grey-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-grey-800 focus-visible:ring-offset-2",
+  "disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
 );
 
 export interface ButtonProps
@@ -35,6 +35,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
-Button.displayName = 'Button';
+Button.displayName = "Button";
 
 export { Button };

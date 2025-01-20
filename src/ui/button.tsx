@@ -21,7 +21,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         disabled={isDisabled}
-        className={cn(buttonClassNames)}
+        className={cn(buttonClassNames, className)}
         ref={ref}
         {...props}
       >
